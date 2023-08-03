@@ -9,7 +9,7 @@ const App = () => {
         lg: `"nav nav" "aside main"`, //for lg (large) screens. Check more at chakra ui webpg eg md (medium), xl (extra large) etc
       }}
     >
-      <GridItem area={"nav"} bg="blue">
+      <GridItem area={"nav"} bg="">
         <NavBar />
       </GridItem>
       <Show
