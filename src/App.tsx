@@ -1,5 +1,6 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import GameGrid from "./components/GameGrid";
 
 const App = () => {
   return (
@@ -15,12 +16,12 @@ const App = () => {
       <Show
         above="lg" /*to show the "aside" area only on large screens and above. Also below="" */
       >
-        <GridItem area={"aside"} bg="grey">
+        <GridItem area={"aside"} bg="black">
           Aside
         </GridItem>
       </Show>
-      <GridItem area={"main"} bg="yellow">
-        Main
+      <GridItem area={"main"}>
+        <GameGrid />
       </GridItem>
     </Grid>
   );
