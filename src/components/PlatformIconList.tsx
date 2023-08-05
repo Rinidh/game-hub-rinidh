@@ -40,6 +40,7 @@ const PlatformIconList = ({ platforms }: Props) => {
       marginY={
         3
       } /* also the vertcial margin here can be set to {"10px"} but it is better to set an integer, which will become a multiple of the theme.space value in chakra's implementation, which will maintain consistency  */
+      justifyContent="space-between"
     >
       {platforms.map((platform) => (
         <Icon
