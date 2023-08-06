@@ -20,17 +20,21 @@ const GameGrid = () => {
       >
         {isLoading &&
           skeletons.map((skeletonNumber) => (
-            <GameCardContainer>
-              <GameCardSkeleton
-                key={
-                  skeletonNumber
-                } /*Using the numbers to transform them into and pass as skeletons here, no state hook needed for the skeletons arr*/
-              />
+            <GameCardContainer
+              key={
+                skeletonNumber
+              } /*Using the numbers to transform them into and pass as skeletons here, no state hook needed for the skeletons arr*/
+            >
+              <GameCardSkeleton />
             </GameCardContainer>
           ))}
         {games.map((game) => (
-          <GameCardContainer>
-            <GameCard key={game.id} game={game} />
+          <GameCardContainer
+            key={
+              game.id
+            } /* define the key prop whenever mapping sth as per react rules in the main comp rendered ie put the key prop in GameCardContainer, not GameCard  */
+          >
+            <GameCard game={game} />
           </GameCardContainer>
         ))}
       </SimpleGrid>
