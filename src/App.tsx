@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
+import GenreList from "./components/GenreList";
 
 const App = () => {
   return (
@@ -10,14 +11,14 @@ const App = () => {
         lg: `"nav nav" "aside main"`, //for lg (large) screens. Check more at chakra ui webpg eg md (medium), xl (extra large) etc
       }}
     >
-      <GridItem area={"nav"} bg="">
+      <GridItem area={"nav"}>
         <NavBar />
       </GridItem>
       <Show
         above="lg" /*to show the "aside" area only on large screens and above. Also below="" */
       >
         <GridItem area={"aside"} bg="black">
-          Aside
+          <GenreList />
         </GridItem>
       </Show>
       <GridItem area={"main"}>
