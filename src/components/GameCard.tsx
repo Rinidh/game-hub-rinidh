@@ -1,8 +1,8 @@
-import React from "react";
-import { Card, CardBody, HStack, Heading, Image, Text } from "@chakra-ui/react";
+import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
 import { Game } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import getCroppedImageUrl from "../services/getCroppedImageUrl";
 
 interface Props {
   game: Game;
@@ -14,7 +14,11 @@ const GameCard = ({ game }: Props) => {
       borderRadius={10}
       overflow={"hidden"} //a css prop that prevents the contents of the card div from overflowing through the div boundaries eg the a bigger image will not have rounded corners even though you set the borderRadius prop here
     >
-      <Image src={game.background_image} /* also from chakra-ui */ />
+      <Image
+        src={getCroppedImageUrl(
+          game.background_image
+        )} /* using the service to get a cropped image url to get a cropped image direclty from the api as it is possible to get a cropped img by passing the dimensions in the url for rawg api */
+      />
       <CardBody>
         <Heading
           /* also from chakra-ui */
