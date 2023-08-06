@@ -10,7 +10,10 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card /* Card from chakra-ui to make a card */
+    <Card
+      width={
+        "300px"
+      } /* this width is also applied in the skeletom comp, which is not a good way as it is duplication. This will be changed in later commits */
       borderRadius={10}
       overflow={"hidden"} //a css prop that prevents the contents of the card div from overflowing through the div boundaries eg the a bigger image will not have rounded corners even though you set the borderRadius prop here
     >
