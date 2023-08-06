@@ -8,9 +8,6 @@ interface Props {
 const GameCardContainer = ({ children }: Props) => {
   return (
     <Box
-      width={
-        "300px" //this width is applied to the base Box comp hence to the GameCard and GameCard skeelton or any other comp rendered as a child to GameCardContainer
-      }
       borderRadius={10}
       overflow={"hidden"} //a css prop that prevents the contents of the card div from overflowing through the div boundaries eg the a bigger image will not have rounded corners even though you set the borderRadius prop here
     >

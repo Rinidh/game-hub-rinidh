@@ -10,6 +10,10 @@ const App = () => {
         base: `"nav" "main"`, //for mobile screens
         lg: `"nav nav" "aside main"`, //for lg (large) screens. Check more at chakra ui webpg eg md (medium), xl (extra large) etc
       }}
+      templateColumns={{
+        base: "1fr",
+        lg: "200px 1fr", //note the way these values are entered, sometimes we use backticks `` as above, and spaces to separate the widths of each column etc
+      }}
     >
       <GridItem area={"nav"}>
         <NavBar />
@@ -17,7 +21,7 @@ const App = () => {
       <Show
         above="lg" /*to show the "aside" area only on large screens and above. Also below="" */
       >
-        <GridItem area={"aside"} bg="black">
+        <GridItem area={"aside"} paddingX={3}>
           <GenreList />
         </GridItem>
       </Show>
