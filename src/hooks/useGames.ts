@@ -1,4 +1,5 @@
 import useData from "./useData";
+import { Genre } from "./useGenre";
 
 export interface Platform {
   id: number;
@@ -14,8 +15,10 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = ()=>{
-  const {data, error, isLoading} = useData<Game>('/games') //using the generic hook
+const useGames = (selectedGenre: Genre | null)=>{
+  const {data, error, isLoading} = useData<Game>('/games', {params: {genres:selectedGenre?.id}}, [selectedGenre?.id]) //passing the selected genre's id (if there) as params in the request config obj / query string in the GET request
+  //the 3rd arg in calling the data hook above is the array of deps configured in the useData declaration
+
   return {games: data, error, isLoading} //passing 'games' as 'data'
 }
 

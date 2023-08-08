@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import apiClient from '../services/api-client';
-import { CanceledError } from 'axios';
+import { AxiosRequestConfig, CanceledError } from 'axios';
 
 interface FetchDataResponse<T> {
   count: number;
   results: T[];
 }
 
-const useData = <T>(endpoint: string) => { //when we use this generic hook we will supply an endpoint eg /games, /genres etc
+const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => { //the requestConfig param (set to optional) will hold the config obj we usually use to send extra info to the server
+  //once we pass an optional param in the func declaration above, all ff params should also be optional ie having ? in end
+
   const [data, setData] = useState<T[]>([]); //telling the ts compiler that the data stored in the games state var is an array[] of objs of type T
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false)
@@ -21,7 +23,8 @@ const useData = <T>(endpoint: string) => { //when we use this generic hook we wi
 
     apiClient
       .get<FetchDataResponse<T>>(endpoint, { //this T will receive type from the T at useData on line 12 and pass it to the interface on line 7
-        signal: controller.signal
+        signal: controller.signal,
+        ...requestConfig
       }) 
       .then((res) => {
         setData(res.data.results)
@@ -34,7 +37,7 @@ const useData = <T>(endpoint: string) => { //when we use this generic hook we wi
       });
 
       return () => controller.abort()
-  }, []); //never forget this bracket
+  }, deps ? [...deps] : []); //if deps has values, then pass those deps as dependencies to the effect hook, or else pass no dependencies ie  empty []
 
   return {data, error, isLoading}
 }

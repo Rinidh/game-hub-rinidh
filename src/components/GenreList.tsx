@@ -1,8 +1,19 @@
-import { HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
-import useGenre from "../hooks/useGenre";
+import {
+  Button,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+} from "@chakra-ui/react";
+import useGenre, { Genre } from "../hooks/useGenre";
 import getCroppedImageUrl from "../services/getCroppedImageUrl";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   const { data, error, isLoading } = useGenre();
 
   if (error) return null; //no genres are seen if an error occurs
@@ -22,7 +33,15 @@ const GenreList = () => {
               boxSize={"32px"}
               borderRadius={8}
             />
-            <Text fontSize={20}>{genre.name}</Text>
+            <Button
+              fontSize={20}
+              variant={
+                "ghost"
+              } /* adds style to the button, more: solid, link etc */
+              onClick={() => onSelectGenre(genre)} //once clicked, the func set to onSelectGenre at the consumer of this comp will run ie in our case setSelectedGenre in App.tsx will run, with arg 'genre' from here
+            >
+              {genre.name}
+            </Button>
           </HStack>
         </ListItem>
       ))}
