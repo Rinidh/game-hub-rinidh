@@ -26,7 +26,10 @@ const App = () => {
         above="lg" /*to show the "aside" area only on large screens and above. Also below="" */
       >
         <GridItem area={"aside"} paddingX={3}>
-          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreList
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       </Show>
       <GridItem area={"main"}>

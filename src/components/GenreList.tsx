@@ -11,9 +11,10 @@ import getCroppedImageUrl from "../services/getCroppedImageUrl";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, error, isLoading } = useGenre();
 
   if (error) return null; //no genres are seen if an error occurs
@@ -39,6 +40,9 @@ const GenreList = ({ onSelectGenre }: Props) => {
                 "ghost"
               } /* adds style to the button, more: solid, link etc */
               onClick={() => onSelectGenre(genre)} //once clicked, the func set to onSelectGenre at the consumer of this comp will run ie in our case setSelectedGenre in App.tsx will run, with arg 'genre' from here
+              fontWeight={
+                genre.id === selectedGenre?.id ? "extrabold" : "normal"
+              }
             >
               {genre.name}
             </Button>
