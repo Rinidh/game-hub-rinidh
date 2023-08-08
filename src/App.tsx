@@ -1,4 +1,11 @@
-import { Grid, GridItem, Show, useStatStyles } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  HStack,
+  Show,
+  Text,
+  useStatStyles,
+} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -6,6 +13,7 @@ import { useState } from "react";
 import { Genre } from "./hooks/useGenre";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/usePlatforms";
+import SortSelector from "./components/SortSelector";
 
 export interface GameQuery {
   //this one obj holds all the vars (as props) for the state of the App eg the selectedGenre, selectedPlatform etc
@@ -41,12 +49,15 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <PlatformSelector
-          onSelectPlatform={(platform) =>
-            setGameQuery({ ...gameQuery, platform })
-          }
-          selectedPlatform={gameQuery.platform} //to notify the PlatformSelector (sending data in) to change the name on screen from "Platforms" to the name of the selectedPlatform
-        />
+        <HStack spacing={5} paddingLeft={2} marginBottom={5}>
+          <PlatformSelector
+            onSelectPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
+            selectedPlatform={gameQuery.platform} //to notify the PlatformSelector (sending data in) to change the name on screen from "Platforms" to the name of the selectedPlatform
+          />
+          <SortSelector />
+        </HStack>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
