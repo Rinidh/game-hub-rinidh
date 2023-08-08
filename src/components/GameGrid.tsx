@@ -3,16 +3,14 @@ import GameCard from "./GameCard";
 import useGames from "../hooks/useGames";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { Genre } from "../hooks/useGenre";
-import { Platform } from "../hooks/usePlatforms";
+import { GameQuery } from "../App";
 
 interface Props {
-  selectedGenre: Genre | null; //getting the seleted genre from the parent App comp, and passing it here to useGames hook to only fetch certain games
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 }
 
-const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
-  const { games, error, isLoading } = useGames(selectedGenre, selectedPlatform);
+const GameGrid = ({ gameQuery }: Props) => {
+  const { games, error, isLoading } = useGames(gameQuery);
 
   const skeletons = [1, 2, 3, 4, 5, 6]; //using 6 skeletons showed screen while loading
   //these numbers are simply going to be mapped to a GameCardSkeleton comp
