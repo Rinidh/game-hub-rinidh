@@ -24,7 +24,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:
     apiClient
       .get<FetchDataResponse<T>>(endpoint, { //this T will receive type from the T at useData on line 12 and pass it to the interface on line 7
         signal: controller.signal,
-        ...requestConfig
+        ...requestConfig //spreading / copying the props and values from the requestConfig obj to here ie the params prop and its value (an obj) is copied here
       }) 
       .then((res) => {
         setData(res.data.results)

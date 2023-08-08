@@ -1,11 +1,6 @@
 import useData from "./useData";
 import { Genre } from "./useGenre";
-
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
+import { Platform } from "./usePlatforms";
 
 export interface Game {
   id: number;
@@ -15,9 +10,9 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre: Genre | null)=>{
-  const {data, error, isLoading} = useData<Game>('/games', {params: {genres:selectedGenre?.id}}, [selectedGenre?.id]) //passing the selected genre's id (if there) as params in the request config obj / query string in the GET request
-  //the 3rd arg in calling the data hook above is the array of deps configured in the useData declaration
+const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null)=>{
+  const {data, error, isLoading} = useData<Game>('/games', {params: {genres: selectedGenre?.id, platforms: selectedPlatform?.id}}, [selectedGenre?.id, selectedPlatform?.id]) //passing the selected genre's and platform's id (if there) as params in the request config obj / query string in the GET request
+  //the 3rd arg in calling the data hook above is the array of deps configured to use in the useData declaration's effect hook as deps 
 
   return {games: data, error, isLoading} //passing 'games' as 'data'
 }
