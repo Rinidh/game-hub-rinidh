@@ -49,7 +49,11 @@ const App = () => {
             5
           } /* wrapped using Flex instaed of HStack (used before) to prevent the error Mr Mosh was getting (about no margins allowed btn a popper and its ref elements) */
         >
-          <Box marginRight={5}>
+          <Box
+            marginRight={
+              5
+            } /* another important flexbox type wrap elem is Box... find more at chakra webpg */
+          >
             <PlatformSelector
               onSelectPlatform={(platform) =>
                 setGameQuery({ ...gameQuery, platform })
