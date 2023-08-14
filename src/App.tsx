@@ -8,6 +8,7 @@ import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import "./App.css";
+import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
   //this one obj holds all the vars (as props) for the state of the App eg the selectedGenre, selectedPlatform etc
@@ -47,31 +48,37 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <Flex
-          paddingLeft={2}
-          marginBottom={
-            5
-          } /* wrapped using Flex instaed of HStack (used before) to prevent the error Mr Mosh was getting (about no margins allowed btn a popper and its ref elements) */
+        <Box
+          paddingLeft={
+            2
+          } /* this Box mainly to keep the Flex (with PlatformSelector and SortSelector) and the GameHeading comps vertically aligned. If we put a new comp in this Box, it is then easy to keep stuff aligned */
         >
-          <Box
-            marginRight={
+          <Flex
+            marginBottom={
               5
-            } /* another important flexbox type wrap elem is Box... find more at chakra webpg */
+            } /* wrapped using Flex instaed of HStack (used before) to prevent the error Mr Mosh was getting (about no margins allowed btn a popper and its ref elements) */
           >
-            <PlatformSelector
-              onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platform })
+            <Box
+              marginRight={
+                5
+              } /* another important flexbox type wrap elem is Box... find more at chakra webpg */
+            >
+              <PlatformSelector
+                onSelectPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, platform })
+                }
+                selectedPlatform={gameQuery.platform} //to notify the PlatformSelector (sending data in) to change the name on screen from "Platforms" to the name of the selectedPlatform
+              />
+            </Box>
+            <SortSelector
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
               }
-              selectedPlatform={gameQuery.platform} //to notify the PlatformSelector (sending data in) to change the name on screen from "Platforms" to the name of the selectedPlatform
+              selectedSortOrder={gameQuery.sortOrder}
             />
-          </Box>
-          <SortSelector
-            onSelectSortOrder={(sortOrder) =>
-              setGameQuery({ ...gameQuery, sortOrder })
-            }
-            selectedSortOrder={gameQuery.sortOrder}
-          />
-        </Flex>
+          </Flex>
+          <GameHeading gameQuery={gameQuery} />
+        </Box>
         <GameGrid
           gameQuery={
             gameQuery
