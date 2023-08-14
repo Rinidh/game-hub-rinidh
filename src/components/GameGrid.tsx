@@ -12,8 +12,31 @@ interface Props {
 const GameGrid = ({ gameQuery }: Props) => {
   const { games, error, isLoading } = useGames(gameQuery);
 
-  const skeletons = [1, 2, 3, 4, 5, 6]; //using 6 skeletons showed screen while loading
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //using 6 skeletons showed screen while loading
   //these numbers are simply going to be mapped to a GameCardSkeleton comp
+
+  let cards;
+  if (isLoading) {
+    cards = skeletons.map((skeletonNumber) => (
+      <GameCardContainer
+        key={
+          skeletonNumber
+        } /*Using the numbers to transform them into and pass as skeletons here, no state hook needed for the skeletons arr*/
+      >
+        <GameCardSkeleton />
+      </GameCardContainer>
+    ));
+  } else {
+    cards = games.map((game) => (
+      <GameCardContainer
+        key={
+          game.id
+        } /* define the key prop whenever mapping sth as per react rules in the main comp rendered ie put the key prop in GameCardContainer, not GameCard  */
+      >
+        <GameCard game={game} />
+      </GameCardContainer>
+    ));
+  }
 
   return (
     <div>
@@ -23,26 +46,7 @@ const GameGrid = ({ gameQuery }: Props) => {
         spacing={5} /* spacing of 10px */
         padding={"10px"}
       >
-        {isLoading &&
-          skeletons.map((skeletonNumber) => (
-            <GameCardContainer
-              key={
-                skeletonNumber
-              } /*Using the numbers to transform them into and pass as skeletons here, no state hook needed for the skeletons arr*/
-            >
-              <GameCardSkeleton />
-            </GameCardContainer>
-          ))}
-        {games &&
-          games.map((game) => (
-            <GameCardContainer
-              key={
-                game.id
-              } /* define the key prop whenever mapping sth as per react rules in the main comp rendered ie put the key prop in GameCardContainer, not GameCard  */
-            >
-              <GameCard game={game} />
-            </GameCardContainer>
-          ))}
+        {cards}
       </SimpleGrid>
     </div>
   );
