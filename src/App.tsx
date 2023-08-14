@@ -1,11 +1,4 @@
-import {
-  Grid,
-  GridItem,
-  HStack,
-  Show,
-  Text,
-  useStatStyles,
-} from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -19,6 +12,7 @@ export interface GameQuery {
   //this one obj holds all the vars (as props) for the state of the App eg the selectedGenre, selectedPlatform etc
   genre: Genre | null; //or selectedGenre, any name you like
   platform: Platform | null;
+  sortOrder: string;
 }
 
 const App = () => {
@@ -56,9 +50,18 @@ const App = () => {
             }
             selectedPlatform={gameQuery.platform} //to notify the PlatformSelector (sending data in) to change the name on screen from "Platforms" to the name of the selectedPlatform
           />
-          <SortSelector />
+          <SortSelector
+            onSelectSortOrder={(sortOrder) =>
+              setGameQuery({ ...gameQuery, sortOrder })
+            }
+            selectedSortOrder={gameQuery.sortOrder}
+          />
         </HStack>
-        <GameGrid gameQuery={gameQuery} />
+        <GameGrid
+          gameQuery={
+            gameQuery
+          } /* this is where our selected genres, platforms, sortorders are sent to be accessed in the useData hook to fetch data acc.ly */
+        />
       </GridItem>
     </Grid>
   );

@@ -1,6 +1,5 @@
 import { GameQuery } from "../App";
 import useData from "./useData";
-import { Genre } from "./useGenre";
 import { Platform } from "./usePlatforms";
 
 export interface Game {
@@ -12,7 +11,7 @@ export interface Game {
 }
 
 const useGames = (gameQuery: GameQuery)=>{
-  const {data, error, isLoading} = useData<Game>('/games', {params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id}}, [gameQuery]) //passing the selected genre's and platform's id (if there) as params in the request config obj / query string in the GET request
+  const {data, error, isLoading} = useData<Game>('/games', {params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering: gameQuery.sortOrder}}, [gameQuery]) //passing the selected genre's and platform's id (if there) as params in the request config obj / query string in the GET request
   //the 3rd arg in calling the data hook above is the array of deps configured to use in the useData declaration's effect hook as deps 
 
   return {games: data, error, isLoading} //passing 'games' as 'data'
