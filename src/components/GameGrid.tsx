@@ -33,15 +33,16 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCardSkeleton />
             </GameCardContainer>
           ))}
-        {games.map((game) => (
-          <GameCardContainer
-            key={
-              game.id
-            } /* define the key prop whenever mapping sth as per react rules in the main comp rendered ie put the key prop in GameCardContainer, not GameCard  */
-          >
-            <GameCard game={game} />
-          </GameCardContainer>
-        ))}
+        {games &&
+          games.map((game) => (
+            <GameCardContainer
+              key={
+                game.id
+              } /* define the key prop whenever mapping sth as per react rules in the main comp rendered ie put the key prop in GameCardContainer, not GameCard  */
+            >
+              <GameCard game={game} />
+            </GameCardContainer>
+          ))}
       </SimpleGrid>
     </div>
   );

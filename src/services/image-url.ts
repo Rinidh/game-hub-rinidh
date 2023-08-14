@@ -1,7 +1,6 @@
-//we don't want to fetch for large images which take time to load yet we just show them on cards, so we get cropped smaller images, possible by modifying the url of the img to fetch for the rawg api
-
+import noImage from "../assets/GameHub Resources/Image Placeholder/no-image-placeholder-6f3882e0.webp"
 const getCroppedImageUrl = (url: string) => {
-  if(!url) return ""
+  if(!url) return noImage
 
   const target = 'media/'
   const index = url.indexOf(target) + target.length
