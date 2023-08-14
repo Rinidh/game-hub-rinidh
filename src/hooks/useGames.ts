@@ -8,6 +8,7 @@ export interface Game {
   background_image: string; //write the exact name here as in the response obj eg writing background-image rather will cause errors
   parent_platforms: {platform: Platform}[]; //there is "design smell" in the response obj from rawg, where an array of objs - each with one prop holding the parent obj (what is needed) - is responded, instead of returning a direct array of parent objs
   metacritic: number;
+  rating_top: number;
 }
 
 const useGames = (gameQuery: GameQuery)=>{
