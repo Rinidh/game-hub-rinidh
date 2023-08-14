@@ -42,8 +42,8 @@ const GameGrid = ({ gameQuery }: Props) => {
     <div>
       {error && <Text color="red">{error}</Text>}
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} //passing an obj that determines how many columns on each screen size
-        spacing={5} /* spacing of 10px */
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} //passing an obj that determines how many columns on each screen size
+        spacing={6} /* spacing of 10px */
         padding={"10px"}
       >
         {cards}

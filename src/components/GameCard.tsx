@@ -17,18 +17,18 @@ const GameCard = ({ game }: Props) => {
         )} /* using the service to get a cropped image url to get a cropped image direclty from the api as it is possible to get a cropped img by passing the dimensions in the url for rawg api */
       />
       <CardBody>
-        <Heading
-          /* also from chakra-ui */
-          fontSize={"3xl"}
-        >
-          {game.name}
-        </Heading>
         <HStack justifyContent="space-between">
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
           />
           <CriticScore score={game.metacritic} />
         </HStack>
+        <Heading
+          /* also from chakra-ui */
+          fontSize={"3xl"}
+        >
+          {game.name}
+        </Heading>
       </CardBody>
     </Card>
   );
