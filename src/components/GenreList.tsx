@@ -18,9 +18,8 @@ interface Props {
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, error, isLoading } = useGenre();
 
-  if (error) return null; //no genres are seen if an error occurs
-
-  if (isLoading) return <Spinner />;
+  // if (error) return null; //we may not need this code as the genres are statically loaded (in the useGenre), but you may keep it in case your mind changes
+  // if (isLoading) return <Spinner />;
 
   return (
     <>
