@@ -12,6 +12,8 @@ interface Props {
 const GameGrid = ({ gameQuery }: Props) => {
   const { games, error, isLoading } = useGames(gameQuery);
 
+  if (error) return <Text color="red">{error}</Text>;
+
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //using 6 skeletons showed screen while loading
   //these numbers are simply going to be mapped to a GameCardSkeleton comp
 
@@ -39,16 +41,13 @@ const GameGrid = ({ gameQuery }: Props) => {
   }
 
   return (
-    <div>
-      {error && <Text color="red">{error}</Text>}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} //passing an obj that determines how many columns on each screen size
-        spacing={6} /* spacing of 10px */
-        padding={"10px"}
-      >
-        {cards}
-      </SimpleGrid>
-    </div>
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} //passing an obj that determines how many columns on each screen size
+      spacing={6} /* spacing of 10px */
+      padding={"10px"}
+    >
+      {cards}
+    </SimpleGrid>
   );
 };
 
