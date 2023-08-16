@@ -1,1 +1,1 @@
-Find out how the current rawg api uses the query params and which type... for sortSelector.tsx 
+Learn about debugging
